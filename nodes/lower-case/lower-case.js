@@ -5,7 +5,10 @@ module.exports = RED => {
     node.on('input', msg => {
       node.send({
         ...msg,
-        payload: msg.payload,
+        payload:
+          typeof msg.payload === 'string'
+            ? msg.payload.toLowerCase()
+            : msg.payload,
       });
     });
   }
