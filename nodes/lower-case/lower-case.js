@@ -3,6 +3,15 @@ module.exports = RED => {
     RED.nodes.createNode(this, config);
     const node = this;
     node.on('input', msg => {
+      let countSimple = node.context().get('count') || 0;
+      console.log({ countSimple });
+      countSimple++;
+      node.context().set('count', countSimple);
+
+      let countFLow = node.context().flow.get('count') || 0;
+      console.log({ countFLow });
+      countFLow += 3;
+      node.context().flow.set('count', countFLow);
       node.send({
         ...msg,
         payload:
