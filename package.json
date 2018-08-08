@@ -11,6 +11,7 @@
   "main": "red/red.js",
   "scripts": {
     "start": "node red.js",
+    "start:watch": "nodemon red.js",
     "test": "grunt",
     "build": "grunt build"
   },
@@ -103,6 +104,8 @@
     "http-proxy": "^1.16.2",
     "istanbul": "0.4.5",
     "mocha": "^5.2.0",
+    "node-red-node-test-helper": "^0.1.7",
+    "nodemon": "^1.18.3",
     "should": "^8.4.0",
     "sinon": "1.17.7",
     "stoppable": "^1.0.6",
@@ -110,8 +113,7 @@
     "wdio-chromedriver-service": "^0.1.3",
     "wdio-mocha-framework": "^0.6.2",
     "wdio-spec-reporter": "^0.1.5",
-    "webdriverio": "^4.13.1",
-    "node-red-node-test-helper": "^0.1.7"
+    "webdriverio": "^4.13.1"
   },
   "engines": {
     "node": ">=4"
