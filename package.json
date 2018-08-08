@@ -11,6 +11,7 @@
   "main": "red/red.js",
   "scripts": {
     "start": "node red.js",
+    "start:watch": "nodemon red.js",
     "test": "grunt",
     "build": "grunt build"
   },
@@ -105,6 +106,7 @@
     "istanbul": "0.4.5",
     "mocha": "^5.2.0",
     "node-red-node-test-helper": "0.1.7",
+    "nodemon": "^1.18.3",
     "should": "^8.4.0",
     "sinon": "1.17.7",
     "stoppable": "^1.0.6",
