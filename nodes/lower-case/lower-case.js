@@ -1,3 +1,6 @@
+const lowerCase = ({ payload }) =>
+  typeof payload === 'string' ? payload.toLowerCase() : payload;
+
 module.exports = RED => {
   function LowerCaseNode(config) {
     RED.nodes.createNode(this, config);
@@ -5,10 +8,7 @@ module.exports = RED => {
     node.on('input', msg => {
       node.send({
         ...msg,
-        payload:
-          typeof msg.payload === 'string'
-            ? msg.payload.toLowerCase()
-            : msg.payload,
+        payload: lowerCase(msg),
       });
     });
   }
