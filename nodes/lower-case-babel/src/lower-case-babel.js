@@ -1,7 +1,6 @@
-const lowerCaseBabel = {
-  greet() {
-    return 'hello';
-  }
-};
+import PureNode from './utils/PureNode';
 
-export default lowerCaseBabel;
+const lowerCase = payload =>
+  typeof payload === 'string' ? payload.toLowerCase() : payload;
+
+module.exports = PureNode('lower-case', lowerCase);
