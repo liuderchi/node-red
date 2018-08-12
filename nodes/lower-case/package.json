@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-example-lower-case",
+  "name": "node-red-contrib-example-upper-case",
   "version": "0.0.1",
   "description": "",
   "keywords": ["node-red", "example"],
@@ -8,7 +8,7 @@
   },
   "node-red": {
     "nodes": {
-      "lower-case": "lower-case.js"
+      "upper-case": "upper-case.js"
     }
   },
   "author": "liuderchi",
