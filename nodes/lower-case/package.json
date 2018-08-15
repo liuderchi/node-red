@@ -17,5 +17,8 @@
     "mocha": "^5.2.0",
     "node-red": "^0.18.7",
     "node-red-node-test-helper": "^0.1.8"
+  },
+  "dependencies": {
+    "socket.io-client": "^2.1.1"
   }
 }
