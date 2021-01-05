@@ -1,0 +1,20 @@
+[
+    {
+        "id": "91f6ec5b.abe44",
+        "type": "function",
+        "z": "993e367c.d79b78",
+        "name": "",
+        "func": "// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 220,
+        "y": 220,
+        "wires": [
+            [
+                "e14019a.0bdf6e8"
+            ]
+        ]
+    }
+]
