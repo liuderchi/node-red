@@ -1,5 +1,93 @@
 [
     {
+        "id": "993e367c.d79b78",
+        "type": "tab",
+        "label": "my first flow",
+        "disabled": false,
+        "info": "https://nodered.org/docs/tutorials/first-flow"
+    },
+    {
+        "id": "20f3a407.8d0e9c",
+        "type": "tab",
+        "label": "my second flow",
+        "disabled": false,
+        "info": "https://nodered.org/docs/tutorials/second-flow"
+    },
+    {
+        "id": "63349edc.e3b41",
+        "type": "inject",
+        "z": "993e367c.d79b78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "40dde76e.5fc908"
+            ]
+        ]
+    },
+    {
+        "id": "40dde76e.5fc908",
+        "type": "debug",
+        "z": "993e367c.d79b78",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9297260c.6b5f18",
+        "type": "inject",
+        "z": "993e367c.d79b78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "91f6ec5b.abe44"
+            ]
+        ]
+    },
+    {
         "id": "91f6ec5b.abe44",
         "type": "function",
         "z": "993e367c.d79b78",
@@ -16,5 +104,162 @@
                 "e14019a.0bdf6e8"
             ]
         ]
+    },
+    {
+        "id": "e14019a.0bdf6e8",
+        "type": "debug",
+        "z": "993e367c.d79b78",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "85169153.2b373",
+        "type": "inject",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "f1245d14.1b35b"
+            ]
+        ]
+    },
+    {
+        "id": "f1245d14.1b35b",
+        "type": "http request",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "ece74321.0c5dc"
+            ]
+        ]
+    },
+    {
+        "id": "ece74321.0c5dc",
+        "type": "csv",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "b1f69e85.e4ab6"
+            ]
+        ]
+    },
+    {
+        "id": "b1f69e85.e4ab6",
+        "type": "switch",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "property": "payload.mag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "7",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "c8306ac0.db3d08"
+            ]
+        ]
+    },
+    {
+        "id": "c8306ac0.db3d08",
+        "type": "change",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PANIC!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "31ff7bf0.b1d9f4"
+            ]
+        ]
+    },
+    {
+        "id": "31ff7bf0.b1d9f4",
+        "type": "debug",
+        "z": "20f3a407.8d0e9c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 320,
+        "wires": []
     }
 ]
