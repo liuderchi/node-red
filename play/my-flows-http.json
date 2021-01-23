@@ -1,0 +1,233 @@
+[
+    {
+        "id": "9f46b670.84b228",
+        "type": "tab",
+        "label": "play with http",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7f0bccf7.a201d4",
+        "type": "comment",
+        "z": "9f46b670.84b228",
+        "name": "http request",
+        "info": "",
+        "x": 130,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1e2597af.2a0c68",
+        "type": "inject",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "8f8cd364.19344"
+            ]
+        ]
+    },
+    {
+        "id": "2cd6b49c.c4e7ec",
+        "type": "http request",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/test",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "92f6bb40.780b48"
+            ]
+        ]
+    },
+    {
+        "id": "92f6bb40.780b48",
+        "type": "debug",
+        "z": "9f46b670.84b228",
+        "name": "resp payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bae4e209.ce80e",
+        "type": "debug",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8cc7394a.1e2108",
+        "type": "http in",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "url": "/test",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "f35b6f37.0af08",
+                "bae4e209.ce80e",
+                "50e41a59.164c64",
+                "270d3bf1.a42d94"
+            ]
+        ]
+    },
+    {
+        "id": "a527bd26.63d2e",
+        "type": "http response",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 460,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "cd03c3c9.f9a33",
+        "type": "change",
+        "z": "9f46b670.84b228",
+        "name": "Set Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "2cd6b49c.c4e7ec"
+            ]
+        ]
+    },
+    {
+        "id": "f35b6f37.0af08",
+        "type": "template",
+        "z": "9f46b670.84b228",
+        "name": "set response payload",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{ \"Hello\": \"World\" }",
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "a527bd26.63d2e"
+            ]
+        ]
+    },
+    {
+        "id": "8f8cd364.19344",
+        "type": "template",
+        "z": "9f46b670.84b228",
+        "name": "set req payload",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{ \"name\": \"Derek\" }",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "cd03c3c9.f9a33"
+            ]
+        ]
+    },
+    {
+        "id": "50e41a59.164c64",
+        "type": "debug",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.body",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "270d3bf1.a42d94",
+        "type": "debug",
+        "z": "9f46b670.84b228",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 420,
+        "wires": []
+    }
+]
