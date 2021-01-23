@@ -7,6 +7,43 @@
         "info": ""
     },
     {
+        "id": "f6f4bb9f.05a518",
+        "type": "google-spreadsheet",
+        "z": "f7e38b71.5811d8",
+        "name": "sheet",
+        "auth": "e00f909a.a408c",
+        "sheet": "17yl5bdgyyj8X3axp06wPDwIMbixQ4OryiSpEg5Av8mE",
+        "range": "bar!A:D",
+        "method": "append",
+        "direction": "line",
+        "action": "set",
+        "clear": false,
+        "line": false,
+        "column": false,
+        "fields": "all",
+        "save": "_sheet",
+        "selfields": [
+            "bar"
+        ],
+        "cell_l": "",
+        "cell_c": "",
+        "input": "payload",
+        "output": "payload",
+        "saveType": "msg",
+        "inputType": "msg",
+        "outputType": "msg",
+        "sheetType": "str",
+        "rangeType": "str",
+        "cell_lType": "str",
+        "cell_cType": "str",
+        "x": 610,
+        "y": 220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
         "id": "f70f2f42.2444d",
         "type": "debug",
         "z": "f7e38b71.5811d8",
@@ -16,7 +53,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 510,
+        "x": 630,
         "y": 280,
         "wires": []
     },
@@ -30,7 +67,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "[\t   {\t       \"name\": $.msg.payload.name,\t       \"age\": $.msg.payload.age,\t       \"vegen\": $.msg.payload.vegen,\t       \"email\":$.msg.payload.email  \t}\t]",
+                "to": "[{\"Email\":$.msg.payload.email}]",
                 "tot": "jsonata"
             }
         ],
@@ -115,136 +152,13 @@
         ]
     },
     {
-        "id": "4f243661.7f4e18",
-        "type": "comment",
-        "z": "f7e38b71.5811d8",
-        "name": "Read a Google sheet and display the text in the debug window",
-        "info": "",
-        "x": 380,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "a0f615f7.5e71f8",
-        "type": "ui_form",
-        "z": "f7e38b71.5811d8",
-        "name": "",
-        "label": "Profile form",
-        "group": "19dc9349.57f72d",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Name",
-                "value": "name",
-                "type": "text",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Age",
-                "value": "age",
-                "type": "number",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Vegen",
-                "value": "vegen",
-                "type": "checkbox",
-                "required": true,
-                "rows": null
-            },
-            {
-                "label": "Email",
-                "value": "email",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "name": "",
-            "age": "",
-            "vegen": false,
-            "email": ""
-        },
-        "payload": "",
-        "submit": "submit",
-        "cancel": "cancel",
-        "topic": "",
-        "x": 110,
-        "y": 260,
-        "wires": [
-            [
-                "ab8b37f9.38c1d8"
-            ]
-        ]
-    },
-    {
-        "id": "d90b4350.ab67d",
-        "type": "function",
-        "z": "f7e38b71.5811d8",
-        "name": "sanitize",
-        "func": "const form = msg.payload[0]\n// form.vegen = form.vegen === 'TRUE' ? 'yes' : 'no'\n\nmsg.payload = [form]\n\n// msg.payload = [\n//     msg.payload[0], // prev payload\n//     {\"1stField\": 'bob', \"2ndField\": 33},  // 2nd entry\n// ];\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 500,
-        "y": 220,
-        "wires": [
-            [
-                "f6f4bb9f.05a518"
-            ]
-        ]
-    },
-    {
-        "id": "f6f4bb9f.05a518",
-        "type": "google-spreadsheet",
-        "z": "f7e38b71.5811d8",
-        "name": "sheet",
-        "auth": "e00f909a.a408c",
-        "sheet": "17yl5bdgyyj8X3axp06wPDwIMbixQ4OryiSpEg5Av8mE",
-        "range": "accounts!A:D",
-        "method": "append",
-        "direction": "line",
-        "action": "set",
-        "clear": false,
-        "line": false,
-        "column": false,
-        "fields": "all",
-        "save": "raw",
-        "selfields": [
-            "bar"
-        ],
-        "cell_l": "",
-        "cell_c": "",
-        "input": "payload",
-        "output": "payload",
-        "saveType": "msg",
-        "inputType": "msg",
-        "outputType": "msg",
-        "sheetType": "str",
-        "rangeType": "str",
-        "cell_lType": "str",
-        "cell_cType": "str",
-        "x": 650,
-        "y": 220,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
         "id": "48cd8313.0a3dac",
         "type": "google-spreadsheet",
         "z": "f7e38b71.5811d8",
         "name": "sheet",
         "auth": "e00f909a.a408c",
         "sheet": "17yl5bdgyyj8X3axp06wPDwIMbixQ4OryiSpEg5Av8mE",
-        "range": "accounts!A:D",
+        "range": "bar!A:D",
         "method": "append",
         "direction": "line",
         "action": "get",
@@ -252,7 +166,7 @@
         "line": false,
         "column": true,
         "fields": "all",
-        "save": "raw",
+        "save": "_sheet",
         "selfields": [
             ""
         ],
@@ -271,20 +185,209 @@
         "y": 420,
         "wires": [
             [
-                "f87a683d.b590e8"
+                "f87a683d.b590e8",
+                "154bfd52.674ae3",
+                "7b6f40b.576d6c"
             ],
             []
         ]
     },
     {
-        "id": "19dc9349.57f72d",
-        "type": "ui_group",
-        "name": "Google sheets",
-        "tab": "5423d9a1.87d8b8",
+        "id": "4f243661.7f4e18",
+        "type": "comment",
+        "z": "f7e38b71.5811d8",
+        "name": "Read a Google sheet and display the text in the debug window",
+        "info": "",
+        "x": 380,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a0f615f7.5e71f8",
+        "type": "ui_form",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "label": "Email form",
+        "group": "19dc9349.57f72d",
         "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Email",
+                "value": "email",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "email": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "ab8b37f9.38c1d8"
+            ]
+        ]
+    },
+    {
+        "id": "154bfd52.674ae3",
+        "type": "function",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "func": "msg._p = msg.payload[0].name\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "e6cd2c7.cebcbd"
+            ]
+        ]
+    },
+    {
+        "id": "e6cd2c7.cebcbd",
+        "type": "debug",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "_p",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7b6f40b.576d6c",
+        "type": "debug",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "_sheet",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d90b4350.ab67d",
+        "type": "function",
+        "z": "f7e38b71.5811d8",
+        "name": "test",
+        "func": "msg.payload = [\n    msg.payload[0], // prev payload\n    {\"1stField\":'test@email.com', \"2ndField\":456},  // 2nd entry\n];\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 180,
+        "wires": [
+            [
+                "f6f4bb9f.05a518"
+            ]
+        ]
+    },
+    {
+        "id": "4b7665e9.2659ec",
+        "type": "http in",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "url": "/webhook",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "d9a97276.56d47",
+                "e6eb143e.559518",
+                "16cf612a.42422f"
+            ]
+        ]
+    },
+    {
+        "id": "d9a97276.56d47",
+        "type": "debug",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e6eb143e.559518",
+        "type": "http response",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "statusCode": "200",
+        "headers": {
+            "payload": "foo"
+        },
+        "x": 340,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "16cf612a.42422f",
+        "type": "function",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "func": "msg._headers = msg.req.headers\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 740,
+        "wires": [
+            [
+                "66206d8f.e29bf4"
+            ]
+        ]
+    },
+    {
+        "id": "66206d8f.e29bf4",
+        "type": "debug",
+        "z": "f7e38b71.5811d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "_headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 740,
+        "wires": []
     },
     {
         "id": "e00f909a.a408c",
@@ -296,6 +399,16 @@
         "way": "json",
         "check_dialogflow": "",
         "check_speech": ""
+    },
+    {
+        "id": "19dc9349.57f72d",
+        "type": "ui_group",
+        "name": "Google sheets",
+        "tab": "5423d9a1.87d8b8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "5423d9a1.87d8b8",
